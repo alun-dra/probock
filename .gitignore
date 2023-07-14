@@ -1,3 +1,5 @@
 backend/env
 backend/probock/probock/settings
 backend/probock/users/migrations
+
+frontend/probock/node_modules
