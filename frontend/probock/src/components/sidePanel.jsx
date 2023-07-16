@@ -1,4 +1,11 @@
 import * as React from 'react';
+
+import VerProyectos from './menu/verProyecto';
+import AgregarPoryecto from './menu/agregarProyecto';
+import Email from './menu/email';
+import Perfil from './menu/perfil';
+
+
 import { styled, useTheme } from '@mui/material/styles';
 import Box from '@mui/material/Box';
 import MuiDrawer from '@mui/material/Drawer';
@@ -95,6 +102,7 @@ const Drawer = styled(MuiDrawer, { shouldForwardProp: (prop) => prop !== 'open' 
 export default function MiniDrawer() {
   const theme = useTheme();
   const [open, setOpen] = React.useState(false);
+  const [menudata, settMenudata] = React.useState("ver")
 
   const handleDrawerOpen = () => {
     setOpen(true);
@@ -128,7 +136,7 @@ export default function MiniDrawer() {
             <MenuIcon />
           </IconButton>
           <Typography variant="h6" noWrap component="div">
-            Mini variant drawer
+            ProBock
           </Typography>
         </Toolbar>
       </AppBar>
@@ -165,7 +173,7 @@ export default function MiniDrawer() {
           </ListItem>
           <Collapse in={projectsOpen} timeout="auto" unmountOnExit>
             <List component="div" disablePadding>
-              <ListItem disablePadding>
+              <ListItem disablePadding onClick={()=> settMenudata("Agregar")}>
                 <ListItemButton
                   sx={{
                     minHeight: 48,
@@ -186,7 +194,7 @@ export default function MiniDrawer() {
                   <ListItemText primary="Agregar" sx={{ opacity: open ? 1 : 0 }} />
                 </ListItemButton>
               </ListItem>
-              <ListItem disablePadding>
+              <ListItem disablePadding onClick={()=> settMenudata("Ver")}>
                 <ListItemButton
                   sx={{
                     minHeight: 48,
@@ -212,7 +220,7 @@ export default function MiniDrawer() {
         </List>
         <Divider />
         <List>
-          <ListItem disablePadding>
+          <ListItem disablePadding onClick={()=> settMenudata("Email")}>
             <ListItemButton sx={{ minHeight: 48, justifyContent: open ? 'initial' : 'center', px: 2.5 }}>
               <ListItemIcon
                 sx={{
@@ -224,10 +232,10 @@ export default function MiniDrawer() {
               >
                 <MailIcon />
               </ListItemIcon>
-              <ListItemText primary="Mensajes" sx={{ opacity: open ? 1 : 0 }} />
+              <ListItemText primary="Email" sx={{ opacity: open ? 1 : 0 }} />
             </ListItemButton>
           </ListItem>
-          <ListItem disablePadding>
+          <ListItem disablePadding onClick={()=> settMenudata("Perfil")}>
             <ListItemButton sx={{ minHeight: 48, justifyContent: open ? 'initial' : 'center', px: 2.5 }}>
               <ListItemIcon
                 sx={{
@@ -245,17 +253,10 @@ export default function MiniDrawer() {
         </List>
       </Drawer>
       <Box component="main" sx={{ flexGrow: 1, p: 3 }}>
-        <DrawerHeader />
-        <Typography paragraph>
-          Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna
-          aliqua. Rhoncus dolor purus non enim praesent elementum facilisis leo vel. Risus at ultrices mi tempus imperdiet.
-          Semper risus in hendrerit gravida rutrum quisque non tellus. Convallis convallis tellus id interdum velit laoreet id
-          donec ultrices. Odio morbi quis commodo odio aenean sed adipiscing. Amet nisl suscipit adipiscing bibendum est ultricies
-          integer quis. Cursus euismod quis viverra nibh cras. Metus vulputate eu scelerisque felis imperdiet proin fermentum
-          leo. Mauris commodo quis imperdiet massa tincidunt. Cras tincidunt lobortis feugiat vivamus at augue. At augue eget
-          arcu dictum varius duis at consectetur lorem. Velit sed ullamcorper morbi tincidunt. Lorem donec massa sapien faucibus
-          et molestie ac.
-        </Typography>
+        {menudata == "Agregar" &&  <AgregarPoryecto />}
+        {menudata == "Ver" &&  <VerProyectos />}
+        {menudata == "Email" &&  <Email />}
+        {menudata == "Perfil" &&  <Perfil />}
       </Box>
     </Box>
   );

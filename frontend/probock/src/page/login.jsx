@@ -121,11 +121,11 @@ const Login = () => {
                                 ¿Olvidaste tu contraseña?
                             </Link>
                         </Grid>
-                        <Grid item>
+                        {/* <Grid item>
                             <Link href="" variant="body2" style={{ color: 'black' }}>
                                 ¿No tienes una cuenta? Regístrate
                             </Link>
-                        </Grid>
+                        </Grid> */}
                     </Grid>
                 </form>
             </div>
